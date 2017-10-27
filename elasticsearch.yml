@@ -1,5 +1,5 @@
 cluster.name: ${CLUSTER_NAME}
-network.host: 0.0.0.0
+network.host: ${NETWORK_HOST}
 
 node:
   data: ${NODE_DATA}
