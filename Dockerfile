@@ -27,3 +27,4 @@ RUN sed -i '/exclude=java-1.8.0-openjdk*/d' /etc/yum.conf  && \
 
 
 USER elasticsearch
+EXPOSE 9200 9300
