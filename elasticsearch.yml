@@ -17,9 +17,14 @@ gateway:
   #expected_nodes: total number of nodes
   recover_after_time: 5m
 
-discovery.zen.hosts_provider: kubernetes
-discovery.zen.minimum_master_nodes: 2
+discovery:
+  zen:
+    hosts_provider: kubernetes
+    minimum_master_nodes: 2
 
 path:
   data: /usr/share/elasticsearch/data
   logs: /usr/share/elasticsearch/logs
+
+bootstrap:
+  memory_lock: ${MEMORY_LOCK}
