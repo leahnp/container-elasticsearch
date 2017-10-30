@@ -15,23 +15,11 @@ FROM docker.elastic.co/elasticsearch/elasticsearch:5.5.2
 
 ENV NETWORK_HOST=_site_
 
-
 RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2
 ADD elasticsearch.yml /usr/share/elasticsearch/config/
 USER root
-RUN yum install -y sudo && \
-    yum clean all && \
-    echo "elasticsearch ALL= NOPASSWD: /usr/bin/chgrp -R 1000 /usr/share/elasticsearch/data" > /etc/sudoers.d/elasticsearch && \
-    chmod 0440 /etc/sudoers.d/elasticsearch
 
-RUN sed -i '/exclude=java-1.8.0-openjdk*/d' /etc/yum.conf  && \
-    yum install -y java-1.8.0-openjdk-headless nss-sysinit nss nss-tools && \
-    yum remove -y wget && \
-    chown elasticsearch:elasticsearch config/elasticsearch.yml
-
-
+RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 USER elasticsearch
 
-# Modify permissions of /usr/share/elasticsearch/data before we start elasticsearch
-RUN sed -i '$isudo /usr/bin/chgrp -R 1000 /usr/share/elasticsearch/data' /usr/share/elasticsearch/bin/es-docker

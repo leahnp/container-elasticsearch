@@ -7,10 +7,10 @@ node:
   name: ${NODE_NAME}
   ingest: false
 
-cloud:
-  kubernetes:
-    service: ${SERVICE}
-    namespace: ${KUBERNETES_NAMESPACE}
+# cloud:
+#   kubernetes:
+#     service: ${SERVICE}
+#     namespace: ${KUBERNETES_NAMESPACE}
 
 gateway:
   #recover_after_nodes: 70-80% of running nodes
