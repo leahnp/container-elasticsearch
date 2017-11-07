@@ -1,0 +1,30 @@
+cluster.name: ${CLUSTER_NAME}
+network.host: ${NETWORK_HOST}
+
+node:
+  master: ${NODE_MASTER}
+  name: ${NODE_NAME}
+  data: ${NODE_DATA}
+  ingest: false
+
+path:
+  data: /usr/share/elasticsearch/data
+  logs: /usr/share/elasticsearch/logs
+
+bootstrap:
+  memory_lock: ${MEMORY_LOCK}
+
+cloud:
+  kubernetes:
+    service: ${SERVICE}
+    namespace: ${KUBERNETES_NAMESPACE}
+
+discovery:
+  zen:
+    hosts_provider: kubernetes
+    minimum_master_nodes: 2
+
+gateway:
+  #recover_after_nodes: 70-80% of running nodes
+  #expected_nodes: total number of nodes
+  recover_after_time: 5m
