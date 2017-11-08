@@ -14,17 +14,19 @@ path:
 bootstrap:
   memory_lock: ${MEMORY_LOCK}
 
-cloud:
-  kubernetes:
-    service: ${SERVICE}
-    namespace: ${KUBERNETES_NAMESPACE}
-
-discovery:
-  zen:
-    hosts_provider: kubernetes
-    minimum_master_nodes: 2
-
 gateway:
   #recover_after_nodes: 70-80% of running nodes
   #expected_nodes: total number of nodes
   recover_after_time: 5m
+
+http:
+  enabled: ${HTTP_ENABLE}
+  compression: true
+  cors:
+    enabled: ${HTTP_CORS_ENABLE}
+    allow-origin: ${HTTP_CORS_ALLOW_ORIGIN}
+
+discovery:
+  zen:
+    ping.unicast.hosts: ${DISCOVERY_SERVICE}
+    minimum_master_nodes: 2
